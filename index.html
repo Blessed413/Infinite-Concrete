@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Concrete - Home</title>
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <style>
+        :root {
+            --brand-red: #D3212D; 
+            --brand-black: #000000;
+            --concrete-grey: #F4F4F4;
+            --white: #FFFFFF;
+        }
+        body { 
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--concrete-grey); 
+            color: var(--brand-black); 
+            line-height: 1.6;
+        }
+        nav { 
+            background-color: var(--white);
+            padding: 10px 50px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-bottom: 4px solid var(--brand-red);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-logo img {
+            height: 60px; 
+            display: block;
+        }
+
+        nav ul { 
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav li { margin-left: 30px; }
+        nav a { 
+            color: var(--brand-black);
+            text-decoration: none; 
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: color 0.3s; 
+        }
+        nav a:hover { color: var(--brand-red); }
+        .slider { 
+            height: 550px; 
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2); 
+            overflow: hidden; 
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .slide.active { opacity: 1; }
+        .slide img { 
+            width: 100%; 
+            height: 100%;
+            object-fit: cover; 
+            filter: brightness(60%);
+        }
+        .motto-container { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            text-align: center;
+            color: var(--white);
+            width: 80%;
+        }
+        .motto-main {
+            display: block;
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+        }
+        .motto-tagline {
+            font-family: 'Playfair Display', serif; /* Matching the logo's script/serif feel */
+            font-style: italic;
+            font-size: 1.8rem;
+            color: var(--brand-red);
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+        }
+        .catalog-snapshot { 
+            padding: 80px 20px; 
+            text-align: center; 
+            background: var(--white);
+            margin: 40px 20px; 
+            border-radius: 4px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+            border-top: 8px solid var(--brand-black); 
+        }
+        .catalog-snapshot h2 { 
+            color: var(--brand-black); 
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .catalog-snapshot a { 
+            display: inline-block;
+            margin-top: 30px;
+            padding: 16px 40px;
+            background-color: var(--brand-red);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        .catalog-snapshot a:hover { 
+            background-color: var(--brand-black);
+            transform: translateY(-3px);
+        }
+        .why-choose { 
+            padding: 60px 40px; 
+            background-color: var(--brand-black);
+            color: var(--white); 
+            margin: 40px 20px; 
+            border-radius: 4px; 
+            position: relative;
+        }
+        .why-choose::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 10px;
+            background-color: var(--brand-red);
+        }
+        .why-choose h2 { 
+            color: var(--brand-red);
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+        .why-choose ul { 
+            list-style: none; 
+            padding: 0; 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .why-choose li { 
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+        }
+        .why-choose li::before {
+            content: "●"; 
+            color: var(--brand-red);
+            font-size: 1.2rem;
+            margin-right: 20px;
+        }
+        footer { 
+            text-align: center;
+            padding: 40px;
+            background-color: var(--brand-black);
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">
+            <img src="logo.png" alt="Infinite Concrete Logo">
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="catalog.html">Catalog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="slider">
+        <div class="slide active">
+            <img src="Photos/concrete1.jpg" alt="Concrete Work">
+            <div class="motto-container">
+                <span class="motto-main">Building the Future</span>
+                <span class="motto-tagline">with Infinite Concrete</span>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="Photos/concrete2.jpg" alt="Quality Materials">
+            <div class="motto-container">
+                <span class="motto-main">Durability You Can Trust</span>
+                <span class="motto-tagline">Quality in every mix</span>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="Photos/concrete3.jpg" alt="Innovative Solutions">
+            <div class="motto-container">
+                <span class="motto-main">Innovative Solutions</span>
+                <span class="motto-tagline">Your Home of Concrete</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="catalog-snapshot">
+        <h2>Catalog Snapshot</h2>
+        <p>Explore our professional range: Blocks, Ready Mix, Precast Slabs, and more.</p>
+        <a href="catalog.html">View Full Catalog</a>
+    </div>
+
+    <div class="why-choose">
+        <h2>Why Choose Infinite Concrete?</h2>
+        <ul>
+            <li>High-quality materials</li>
+            <li>Expert craftsmanship</li>
+            <li>Timely delivery</li>
+            <li>Competitive prices</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Infinite Concrete. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 4000);
+    </script>
+</body>
+</html>

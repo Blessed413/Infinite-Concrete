@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Concrete - Catalog</title>
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <style>
+        :root {
+            --brand-red: #D3212D;
+            --brand-black: #000000;
+            --concrete-grey: #f4f4f4;
+            --border-color: #e0e0e0;
+        }
+        body { 
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0; 
+            background-color: var(--concrete-grey); 
+            color: var(--brand-black); 
+        }
+        nav { 
+            background-color: #fff; 
+            padding: 10px 50px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+            border-bottom: 4px solid var(--brand-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-logo img { height: 50px; }
+        nav ul { 
+            list-style: none; 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+        }
+        nav li { margin-left: 25px; }
+        nav a { 
+            color: var(--brand-black); 
+            text-decoration: none; 
+            font-weight: 700; 
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: color 0.3s; 
+        }
+        nav a:hover { color: var(--brand-red); }
+        .container { 
+            display: flex; 
+            padding: 40px 20px; 
+            max-width: 1200px;
+            margin: 0 auto; 
+            gap: 30px;
+        }
+        .products { 
+            flex: 3; 
+            padding: 30px; 
+            background-color: #fff; 
+            border-radius: 4px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+        }
+        .products h2 { 
+            color: var(--brand-black); 
+            text-transform: uppercase;
+            font-weight: 800;
+            border-bottom: 4px solid var(--brand-red); 
+            padding-bottom: 15px;
+            margin-top: 0;
+        }
+        .product { 
+            border: 1px solid var(--border-color); 
+            margin-bottom: 20px; 
+            padding: 20px; 
+            border-radius: 4px; 
+            transition: all 0.3s; 
+            display: flex; 
+            align-items: center; 
+        }
+        .product:hover { 
+            border-color: var(--brand-red);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+        }
+        .product img { 
+            width: 140px; 
+            height: 140px; 
+            object-fit: cover; 
+            border-radius: 2px; 
+            margin-right: 25px;
+            border: 1px solid #eee;
+        }
+        .product-info { flex: 1; }
+        .product-info h3 { 
+            margin: 0 0 10px 0; 
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+        .product-info p { 
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        button { 
+            background-color: var(--brand-red);
+            color: white;
+            border: none;
+            padding: 12px 24px; 
+            border-radius: 2px; 
+            cursor: pointer; 
+            font-weight: 700; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s; 
+        }
+        button:hover { background-color: var(--brand-black); }
+        .cart { 
+            flex: 1; 
+            padding: 25px; 
+            background-color: var(--brand-black); 
+            color: white;
+            border-radius: 4px; 
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        .cart h2 { 
+            color: var(--brand-red); 
+            text-transform: uppercase; 
+            font-size: 1.4rem;
+            margin-top: 0;
+        }
+        #cartItems p { 
+            font-size: 0.9rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .total-box {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin: 20px 0;
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+        }
+        #orderForm { 
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff; 
+            border-radius: 4px;
+            color: var(--brand-black);
+        }
+        #orderForm h3 { text-transform: uppercase; color: var(--brand-red); }
+        label { display: block; font-weight: 700; margin-bottom: 5px; font-size: 0.8rem; text-transform: uppercase; }
+        input, textarea { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color); 
+            border-radius: 2px;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        footer { 
+            text-align: center;
+            padding: 40px;
+            background-color: #fff;
+            color: #888;
+            border-top: 1px solid var(--border-color); 
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">
+            <img src="logo.png" alt="Infinite Concrete Logo">
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="catalog.html">Catalog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="products">
+            <h2>Catalog</h2>
+            
+            <div class="product">
+                <img src="Photos/concrete1.jpg" alt="Concrete Blocks">
+                <div class="product-info">
+                    <h3>Heavy Duty Concrete Blocks</h3>
+                    <p>Price: $10.00 each</p>
+                    <button onclick="addToCart('Concrete Blocks', 10)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="Photos/concrete2.jpg" alt="Ready Mix Concrete">
+                <div class="product-info">
+                    <h3>Ready Mix Premium Concrete</h3>
+                    <p>Price: $50.00 per cubic meter</p>
+                    <button onclick="addToCart('Ready Mix', 50)">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="Photos/concrete3.jpg" alt="Precast Slabs">
+                <div class="product-info">
+                    <h3>Reinforced Precast Slabs</h3>
+                    <p>Price: $100.00 each</p>
+                    <button onclick="addToCart('Precast Slabs', 100)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart">
+            <h2>Your Order</h2>
+            <div id="cartItems">
+                <p style="color: #666; font-style: italic;">No items added yet.</p>
+            </div>
+            <div class="total-box">
+                <span>Total:</span>
+                <span>$<span id="total">0</span></span>
+            </div>
+            <button style="width: 100%;" onclick="viewCart()">Checkout Now</button>
+
+            <div id="orderForm">
+                <h3>Delivery Details</h3>
+                <form id="order">
+                    <label>Full Name</label>
+                    <input type="text" id="name" placeholder="John Doe" required>
+                    
+                    <label>Phone Number</label>
+                    <input type="tel" id="phone" placeholder="+256..." required>
+                    
+                    <label>Delivery Date</label>
+                    <input type="date" id="date" required>
+                    
+                    <label>Site Address</label>
+                    <textarea id="address" rows="3" placeholder="Enter full delivery location" required></textarea>
+                    
+                    <button type="submit" style="width: 100%; background: var(--brand-black); border: 1px solid #555;">Submit Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Infinite Concrete. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+        function addToCart(product, price) {
+            cart.push({ product, price });
+            updateCart();
+        }
+
+        function updateCart() {
+            let items = document.getElementById('cartItems');
+            items.innerHTML = '';
+            let total = 0;
+            
+            if(cart.length === 0) {
+                items.innerHTML = '<p style="color: #666; font-style: italic;">No items added yet.</p>';
+            }
+
+            cart.forEach(item => {
+                items.innerHTML += `<p><span>${item.product}</span> <span>$${item.price}</span></p>`;
+                total += item.price;
+            });
+            document.getElementById('total').textContent = total;
+        }
+
+        function viewCart() {
+            if(cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+            document.getElementById('orderForm').style.display = 'block';
+            document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('order').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Order submitted successfully! We will contact you shortly.');
+            cart = [];
+            updateCart();
+            document.getElementById('orderForm').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
