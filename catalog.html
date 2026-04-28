@@ -1,302 +1,400 @@
+<!--Christine Muhimbisa-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infinite Concrete - Catalog</title>
+    <title>Infinite Concrete - Full Catalog</title>
     <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --brand-red: #D3212D;
             --brand-black: #000000;
             --concrete-grey: #f4f4f4;
-            --border-color: #e0e0e0;
+            --white: #FFFFFF;
+            --shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
+        * { box-sizing: border-box; }
         body { 
             font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0; 
+            margin: 0; padding: 0; 
             background-color: var(--concrete-grey); 
             color: var(--brand-black); 
+            overflow-x: hidden;
         }
         nav { 
-            background-color: #fff; 
-            padding: 10px 50px; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
-            border-bottom: 4px solid var(--brand-red);
+            background: var(--white);
+            padding: 0 5%;
+            height: 85px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-bottom: 5px solid var(--brand-red);
         }
-        .nav-logo img { height: 50px; }
-        nav ul { 
+        .nav-logo img { height: 55px; width: auto; display: block; }
+        #nav-menu { 
             list-style: none; 
-            margin: 0; 
-            padding: 0; 
             display: flex; 
+            gap: 40px; 
+            margin: 0; padding: 0; 
         }
-        nav li { margin-left: 25px; }
-        nav a { 
-            color: var(--brand-black); 
+        .nav-link { 
             text-decoration: none; 
-            font-weight: 700; 
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            transition: color 0.3s; 
-        }
-        nav a:hover { color: var(--brand-red); }
-        .container { 
-            display: flex; 
-            padding: 40px 20px; 
-            max-width: 1200px;
-            margin: 0 auto; 
-            gap: 30px;
-        }
-        .products { 
-            flex: 3; 
-            padding: 30px; 
-            background-color: #fff; 
-            border-radius: 4px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-        }
-        .products h2 { 
             color: var(--brand-black); 
-            text-transform: uppercase;
-            font-weight: 800;
-            border-bottom: 4px solid var(--brand-red); 
-            padding-bottom: 15px;
-            margin-top: 0;
-        }
-        .product { 
-            border: 1px solid var(--border-color); 
-            margin-bottom: 20px; 
-            padding: 20px; 
-            border-radius: 4px; 
-            transition: all 0.3s; 
-            display: flex; 
-            align-items: center; 
-        }
-        .product:hover { 
-            border-color: var(--brand-red);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
-        }
-        .product img { 
-            width: 140px; 
-            height: 140px; 
-            object-fit: cover; 
-            border-radius: 2px; 
-            margin-right: 25px;
-            border: 1px solid #eee;
-        }
-        .product-info { flex: 1; }
-        .product-info h3 { 
-            margin: 0 0 10px 0; 
-            text-transform: uppercase;
-            font-weight: 800;
-            font-size: 1.2rem;
-        }
-        .product-info p { 
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            color: #555;
-            margin-bottom: 15px;
-        }
-        button { 
-            background-color: var(--brand-red);
-            color: white;
-            border: none;
-            padding: 12px 24px; 
-            border-radius: 2px; 
-            cursor: pointer; 
-            font-weight: 700; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: background 0.3s; 
-        }
-        button:hover { background-color: var(--brand-black); }
-        .cart { 
-            flex: 1; 
-            padding: 25px; 
-            background-color: var(--brand-black); 
-            color: white;
-            border-radius: 4px; 
-            height: fit-content;
-            position: sticky;
-            top: 100px;
-        }
-        .cart h2 { 
-            color: var(--brand-red); 
+            font-weight: 800; 
             text-transform: uppercase; 
-            font-size: 1.4rem;
-            margin-top: 0;
+            font-size: 0.85rem; 
+            letter-spacing: 1.5px;
+            transition: 0.3s;
+            position: relative;
+            padding: 10px 0;
         }
-        #cartItems p { 
-            font-size: 0.9rem;
-            border-bottom: 1px solid #333;
-            padding-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 3px; bottom: 0; left: 0;
+            background-color: var(--brand-red); transition: 0.3s;
         }
-        .total-box {
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin: 20px 0;
-            color: var(--white);
-            display: flex;
-            justify-content: space-between;
-        }
-        #orderForm { 
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link:hover { color: var(--brand-red); }
+        .hamburger {
             display: none;
-            margin-top: 30px;
-            padding: 20px;
-            background-color: #fff; 
-            border-radius: 4px;
-            color: var(--brand-black);
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
         }
-        #orderForm h3 { text-transform: uppercase; color: var(--brand-red); }
-        label { display: block; font-weight: 700; margin-bottom: 5px; font-size: 0.8rem; text-transform: uppercase; }
-        input, textarea { 
-            width: 100%; 
-            padding: 12px; 
-            margin-bottom: 15px;
-            border: 1px solid var(--border-color); 
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background-color: var(--brand-black);
+            transition: 0.3s;
             border-radius: 2px;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
         }
-        footer { 
-            text-align: center;
-            padding: 40px;
-            background-color: #fff;
-            color: #888;
-            border-top: 1px solid var(--border-color); 
+        .main-container { 
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+            max-width: 1300px;
+            margin: 30px auto;
+            padding: 0 20px;
         }
+        .products-grid { 
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        .products-grid h2 { 
+            margin: 40px 0 20px 0; text-transform: uppercase; font-weight: 800;
+            border-left: 5px solid var(--brand-red); padding-left: 15px;
+        }
+        .products-grid h2:first-of-type { margin-top: 0; }
+
+        .product-card { 
+            display: flex; align-items: center; border: 1px solid #eee;
+            border-radius: 10px; padding: 20px; margin-bottom: 20px; transition: 0.3s;
+        }
+        .product-card:hover { transform: translateY(-3px); border-color: var(--brand-red); box-shadow: var(--shadow); }
+        .product-card img { width: 160px; height: 160px; object-fit: cover; border-radius: 8px; margin-right: 25px; border: 1px solid #f0f0f0; }
+        .product-info { flex: 1; }
+        .product-info h3 { margin: 0 0 5px 0; font-size: 1.1rem; text-transform: uppercase; font-weight: 800; }
+        .tagline { color: #666; font-size: 0.85rem; margin-bottom: 12px; display: block; font-style: italic; line-height: 1.4; }
+        .price { color: var(--brand-red); font-weight: 800; font-size: 1.1rem; margin-bottom: 15px; display: block; }
+        .qty-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .qty-btn { width: 32px; height: 32px; border: 1px solid #ddd; background: #fff; cursor: pointer; border-radius: 4px; font-weight: bold; }
+        .qty-input { width: 50px; text-align: center; border: 1px solid #ddd; padding: 5px; border-radius: 4px; font-weight: 700; }
+        .add-btn { background: var(--brand-red); color: #fff; border: none; padding: 12px 25px; border-radius: 6px; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: 0.3s; width: 100%; max-width: 220px; }
+        .add-btn:hover { background: var(--brand-black); }
+        .cart-sidebar { 
+            background: var(--brand-black); color: #fff; padding: 25px;
+            border-radius: 12px; height: fit-content; position: sticky; top: 110px;
+        }
+        .cart-sidebar h2 { color: var(--brand-red); margin-top: 0; font-size: 1.4rem; text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding: 12px 0; font-size: 0.85rem; }
+        .remove { color: #ff4d4d; cursor: pointer; background: none; border: none; font-size: 1.1rem; }
+        .total-row { display: flex; justify-content: space-between; margin-top: 20px; font-weight: 800; font-size: 1.2rem; border-top: 2px solid var(--brand-red); padding-top: 15px; }
+        .checkout-btn { 
+            background: var(--brand-red); color: #fff; border: none; width: 100%; 
+            padding: 15px; border-radius: 6px; margin-top: 20px; font-weight: 800; 
+            text-transform: uppercase; cursor: pointer; transition: 0.3s;
+        }
+        .checkout-btn:hover { background: var(--white); color: var(--brand-black); }
+        .checkout-section {
+            max-width: 1300px; margin: 40px auto; padding: 0 20px;
+            display: none;
+        }
+        .checkout-container {
+            background: var(--white); padding: 40px; border-radius: 12px;
+            box-shadow: var(--shadow); border-top: 10px solid var(--brand-red);
+        }
+        .checkout-container h2 { text-transform: uppercase; font-weight: 800; margin-top: 0; margin-bottom: 30px; }
+        .form-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 25px; margin-bottom: 30px;
+        }
+        .input-group { display: flex; flex-direction: column; gap: 8px; }
+        .input-group label { font-weight: 800; text-transform: uppercase; font-size: 0.75rem; color: #555; }
+        .input-group input, .input-group textarea {
+            padding: 15px; border: 2px solid #eee; border-radius: 6px; 
+            font-family: inherit; transition: 0.3s;
+        }
+        .input-group input:focus { border-color: var(--brand-red); outline: none; }
+        @media (max-width: 992px) {
+            nav { height: 75px; padding: 0 20px; }
+            .nav-logo img { height: 45px; }
+            .hamburger { display: flex; }
+            #nav-menu {
+                position: fixed; top: 0; right: -100%; width: 75%; height: 100vh;
+                background: var(--white); flex-direction: column; align-items: center;
+                justify-content: center; transition: 0.4s ease-in-out;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1); gap: 30px;
+            }
+            #nav-menu.active { right: 0; }
+            .main-container { grid-template-columns: 1fr; }
+            .cart-sidebar { position: static; margin-top: 20px; }
+            .product-card { flex-direction: column; text-align: center; }
+            .product-card img { margin-right: 0; margin-bottom: 15px; width: 100%; height: 200px; }
+            .add-btn { max-width: 100%; }
+        }
+        .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        footer { text-align: center; padding: 50px; background: var(--brand-black); color: #777; margin-top: 50px; }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-logo">
-            <img src="logo.png" alt="Infinite Concrete Logo">
-        </div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="catalog.html">Catalog</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div class="container">
-        <div class="products">
-            <h2>Catalog</h2>
-            
-            <div class="product">
-                <img src="Photos/concrete1.jpg" alt="Concrete Blocks">
-                <div class="product-info">
-                    <h3>Heavy Duty Concrete Blocks</h3>
-                    <p>Price: $10.00 each</p>
-                    <button onclick="addToCart('Concrete Blocks', 10)">Add to Cart</button>
+<nav>
+    <div class="nav-logo"><a href="index.html"><img src="logo.png" alt="Infinite Concrete"></a></div>
+    <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+    <ul id="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="catalog.html" class="nav-link active">Catalog</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+</nav>
+<div class="main-container">
+    <div class="products-grid">
+        <h2>Construction Blocks and Finishing</h2>
+        <div class="product-card">
+            <img src="Catalog Photos/hollow block six inch.jpg" alt="6-Inch Hollow">
+            <div class="product-info">
+                <h3>Hollow Blocks (6-inch)</h3>
+                <span class="tagline">Perfect for perimeter walls and lightweight partitions.</span>
+                <span class="price">UGX 2,000 per piece</span>
+                <div class="qty-wrap">
+                    <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+                    <input type="number" value="1" min="1" class="qty-input">
+                    <button class="qty-btn" onclick="changeQty(this,1)">+</button>
                 </div>
-            </div>
-
-            <div class="product">
-                <img src="Photos/concrete2.jpg" alt="Ready Mix Concrete">
-                <div class="product-info">
-                    <h3>Ready Mix Premium Concrete</h3>
-                    <p>Price: $50.00 per cubic meter</p>
-                    <button onclick="addToCart('Ready Mix', 50)">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product">
-                <img src="Photos/concrete3.jpg" alt="Precast Slabs">
-                <div class="product-info">
-                    <h3>Reinforced Precast Slabs</h3>
-                    <p>Price: $100.00 each</p>
-                    <button onclick="addToCart('Precast Slabs', 100)">Add to Cart</button>
-                </div>
+                <button class="add-btn" onclick="addToCart('6-Inch Hollow', 2000, this)">Add to Cart</button>
             </div>
         </div>
-
-        <div class="cart">
-            <h2>Your Order</h2>
-            <div id="cartItems">
-                <p style="color: #666; font-style: italic;">No items added yet.</p>
+        <div class="product-card">
+            <img src="Catalog Photos/hollow block 8 inch .jpg" alt="8-Inch Hollow">
+            <div class="product-info">
+                <h3>Hollow Blocks (8-inch)</h3>
+                <span class="tagline">Commercial standard for structural load-bearing walls.</span>
+                <span class="price">UGX 2,400 per piece</span>
+                <div class="qty-wrap">
+                    <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+                    <input type="number" value="1" min="1" class="qty-input">
+                    <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+                </div>
+                <button class="add-btn" onclick="addToCart('8-Inch Hollow', 2400, this)">Add to Cart</button>
             </div>
-            <div class="total-box">
-                <span>Total:</span>
-                <span>$<span id="total">0</span></span>
+        </div>
+        <div class="product-card">
+            <img src="Catalog Photos/solid blocks.jpg" alt="6-Inch Solid">
+            <div class="product-info">
+                <h3>Solid Blocks (6-inch)</h3>
+                <span class="tagline">High density for soundproofing and heavy loads.</span>
+                <span class="price">UGX 3,000 per piece</span>
+                <div class="qty-wrap">
+                    <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+                    <input type="number" value="1" min="1" class="qty-input">
+                    <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+                </div>
+                <button class="add-btn" onclick="addToCart('6-Inch Solid', 3000, this)">Add to Cart</button>
             </div>
-            <button style="width: 100%;" onclick="viewCart()">Checkout Now</button>
-
-            <div id="orderForm">
-                <h3>Delivery Details</h3>
-                <form id="order">
-                    <label>Full Name</label>
-                    <input type="text" id="name" placeholder="John Doe" required>
-                    
-                    <label>Phone Number</label>
-                    <input type="tel" id="phone" placeholder="+256..." required>
-                    
-                    <label>Delivery Date</label>
-                    <input type="date" id="date" required>
-                    
-                    <label>Site Address</label>
-                    <textarea id="address" rows="3" placeholder="Enter full delivery location" required></textarea>
-                    
-                    <button type="submit" style="width: 100%; background: var(--brand-black); border: 1px solid #555;">Submit Order</button>
-                </form>
+        </div>
+        <div class="product-card">
+            <img src="Catalog Photos/solid blocks 2.jpg" alt="8-Inch Solid">
+            <div class="product-info">
+                <h3>Solid Blocks (8-inch)</h3>
+                <span class="tagline">Engineered for multi-story foundations and high-pressure walls.</span>
+                <span class="price">UGX 3,400 per piece</span>
+                <div class="qty-wrap">
+                    <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+                    <input type="number" value="1" min="1" class="qty-input">
+                    <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+                </div>
+                <button class="add-btn" onclick="addToCart('8-Inch Solid', 3400, this)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="Catalog Photos/kerbstones.jpg" alt="Kerbstones">
+            <div class="product-info">
+                <h3>Road Kerbstones (600mm)</h3>
+                <span class="tagline">Durable road edging for drainage and boundary control.</span>
+                <span class="price">UGX 8,000 per piece</span>
+                <div class="qty-wrap">
+                    <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+                    <input type="number" value="1" min="1" class="qty-input">
+                    <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+                </div>
+                <button class="add-btn" onclick="addToCart('Kerbstones', 8000, this)">Add to Cart</button>
+            </div>
+        </div>
+        <h2>Premium Pavers</h2>
+        <div class="product-card">
+            <img src="Catalog Photos/rect pavers 2.jpg" alt="60mm Rect">
+            <div class="product-info">
+                <h3>Rectangular Pavers (60mm)</h3>
+                <span class="tagline">Classic aesthetics for walkways and patios.</span>
+                <span class="price">UGX 28,000 per sqm</span>
+                <div class="qty-wrap">
+                    <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+                    <input type="number" value="1" min="1" class="qty-input">
+                    <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+                </div>
+                <button class="add-btn" onclick="addToCart('60mm Rect Paver', 28000, this)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="Catalog Photos/norm pavers .jpg" alt="Double-T">
+            <div class="product-info">
+                <h3>Double-T Pavers (80mm)</h3>
+                <span class="tagline">Industrial interlocking for heavy-duty traffic areas.</span>
+                <span class="price">UGX 35,000 per sqm</span>
+                <div class="qty-wrap">
+                    <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+                    <input type="number" value="1" min="1" class="qty-input">
+                    <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+                </div>
+                <button class="add-btn" onclick="addToCart('80mm Double-T', 35000, this)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="Catalog Photos/pavers 4.jpg" alt="Cosmic Moon">
+            <div class="product-info">
+                <h3>Cosmic Moon Pavers (80mm)</h3>
+                <span class="tagline">Decorative pattern with heavy-duty load capacity.</span>
+                <span class="price">UGX 35,000 per sqm</span>
+                <div class="qty-wrap">
+                    <button class="qty-btn" onclick="changeQty(this,-1)">-</button>
+                    <input type="number" value="1" min="1" class="qty-input">
+                    <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+                </div>
+                <button class="add-btn" onclick="addToCart('80mm Cosmic', 35000, this)">Add to Cart</button>
             </div>
         </div>
     </div>
+    <div class="cart-sidebar" id="cart-view">
+        <h2>Order Summary</h2>
+        <div id="cartItems"><p style="text-align:center; opacity: 0.5; padding: 20px 0;">Cart is empty.</p></div>
+        <div class="total-row"><span>Total</span><span>UGX <span id="total">0</span></span></div>
+        <button class="checkout-btn" onclick="openCheckout()">Checkout</button>
+    </div>
+</div>
+<div class="checkout-section" id="checkout-section">
+    <div class="checkout-container">
+        <h2>Delivery & Contact Details</h2>
+        <form id="checkoutForm">
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="custName" placeholder="Enter your name" required>
+                </div>
+                <div class="input-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="custPhone" placeholder="07XX XXX XXX" required>
+                </div>
+                <div class="input-group">
+                    <label>Delivery Location</label>
+                    <input type="text" id="custLocation" placeholder="Site location" required>
+                </div>
+                <div class="input-group">
+                    <label>Preferred Delivery Date</label>
+                    <input type="date" id="deliveryDate" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Additional Notes</label>
+                <textarea id="custNotes" rows="3" placeholder="Any specific delivery instructions..."></textarea>
+            </div>
+            <button type="submit" class="checkout-btn">Confirm Order</button>
+        </form>
+    </div>
+</div>
+<footer><p>&copy; 2026 Infinite Concrete. All Rights Reserved.</p></footer>
+<script>
+    function toggleMenu() {
+        document.querySelector('.hamburger').classList.toggle('active');
+        document.getElementById('nav-menu').classList.toggle('active');
+    }
 
-    <footer>
-        <p>&copy; 2026 Infinite Concrete. All rights reserved.</p>
-    </footer>
+    // Set minimum date to today for the date picker
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('deliveryDate').setAttribute('min', today);
 
-    <script>
-        let cart = [];
-        function addToCart(product, price) {
-            cart.push({ product, price });
-            updateCart();
+    let cart = {};
+    function changeQty(btn, delta) {
+        let input = btn.parentNode.querySelector('.qty-input');
+        let val = parseInt(input.value) + delta;
+        if (val >= 1) input.value = val;
+    }
+
+    function addToCart(name, price, btn) {
+        let qty = parseInt(btn.closest('.product-info').querySelector('.qty-input').value);
+        cart[name] = cart[name] ? {price, qty: cart[name].qty + qty} : {price, qty};
+        updateCart();
+    }
+
+    function updateCart() {
+        const list = document.getElementById('cartItems');
+        list.innerHTML = ''; let total = 0;
+        for (let item in cart) {
+            let sub = cart[item].price * cart[item].qty; total += sub;
+            list.innerHTML += `<div class="cart-item"><span>${item} (x${cart[item].qty})</span><span>${sub.toLocaleString()} <button class="remove" onclick="removeItem('${item}')">✕</button></span></div>`;
         }
-
-        function updateCart() {
-            let items = document.getElementById('cartItems');
-            items.innerHTML = '';
-            let total = 0;
-            
-            if(cart.length === 0) {
-                items.innerHTML = '<p style="color: #666; font-style: italic;">No items added yet.</p>';
-            }
-
-            cart.forEach(item => {
-                items.innerHTML += `<p><span>${item.product}</span> <span>$${item.price}</span></p>`;
-                total += item.price;
-            });
-            document.getElementById('total').textContent = total;
+        if (total === 0) {
+            list.innerHTML = '<p style="text-align:center; opacity: 0.5;">Cart is empty.</p>';
+            document.getElementById('checkout-section').style.display = 'none';
         }
+        document.getElementById('total').innerText = total.toLocaleString();
+    }
 
-        function viewCart() {
-            if(cart.length === 0) {
-                alert("Your cart is empty!");
-                return;
-            }
-            document.getElementById('orderForm').style.display = 'block';
-            document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
-        }
+    function removeItem(name) { delete cart[name]; updateCart(); }
 
-        document.getElementById('order').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Order submitted successfully! We will contact you shortly.');
-            cart = [];
-            updateCart();
-            document.getElementById('orderForm').style.display = 'none';
-        });
-    </script>
+    function openCheckout() {
+        if (Object.keys(cart).length === 0) return alert("Your cart is empty!");
+        document.getElementById('checkout-section').style.display = 'block';
+        window.scrollTo({ top: document.getElementById('checkout-section').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    document.getElementById('checkoutForm').onsubmit = (e) => {
+        e.preventDefault();
+        
+        let name = document.getElementById('custName').value;
+        let date = document.getElementById('deliveryDate').value;
+        let total = document.getElementById('total').innerText;
+
+        alert(`Thank you, ${name}!\nYour order (UGX ${total}) has been received. We have noted your preferred delivery date for ${date}. Our team will contact you shortly.`);
+        
+        cart = {};
+        updateCart();
+        document.getElementById('checkoutForm').reset();
+        document.getElementById('checkout-section').style.display = 'none';
+    };
+</script>
 </body>
 </html>
