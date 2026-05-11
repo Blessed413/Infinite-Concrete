@@ -1,0 +1,197 @@
+<!--Christine Muhimbisa-->
+<?php
+  $current_page = basename($_SERVER['PHP_SELF']);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Concrete - Contact</title>
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <style>
+        :root {
+            --brand-red: #D3212D;
+            --brand-black: #000000;
+            --concrete-grey: #F4F4F4;
+            --white: #FFFFFF;
+        }
+        body { 
+            font-family: 'Inter', sans-serif;
+            margin: 0; 
+            padding: 0;
+            background-color: var(--concrete-grey);
+            color: var(--brand-black); 
+        }
+        nav { 
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 0 5%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-bottom: 4px solid var(--brand-red);
+        }
+        .nav-logo img { height: 55px; width: auto; display: block; }
+        .nav-container { display: flex; align-items: center; }
+        #nav-menu { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; }
+        .nav-li { margin-left: 35px; }
+        .nav-link { 
+            color: var(--brand-black);
+            text-decoration: none; 
+            font-weight: 700; 
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 10px 0;
+            transition: color 0.3s; 
+        }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 3px; bottom: 0; left: 0;
+            background-color: var(--brand-red); transition: width 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link:hover { color: var(--brand-red); }
+        #nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            margin-left: 20px;
+            z-index: 10001;
+        }
+        #nav-toggle span { height: 3px; width: 100%; background: #000; transition: 0.4s; border-radius: 2px; }
+        .container { 
+            display: flex; 
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+        .locations, .feedback { 
+            flex: 1;
+            padding: 40px;
+            background-color: var(--white);
+            border-radius: 4px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-top: 6px solid var(--brand-black); 
+        }
+        .locations { border-left: 8px solid var(--brand-red); }
+        h2 { color: var(--brand-red); text-transform: uppercase; font-weight: 800; margin-top: 0; letter-spacing: 1px; }
+        h3 { color: var(--brand-black); font-weight: 800; text-transform: uppercase; margin-top: 25px; font-size: 1.1rem; }
+       .map-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    margin-bottom: 25px;
+}
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    border: 0;
+}
+        .tagline-text { font-style: italic; color: #666; margin: 20px 0; font-size: 1.1rem; display: block; }
+        label { display: block; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; margin-bottom: 8px; color: #555; }
+        input, textarea { 
+            width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd; 
+            border-radius: 2px; font-family: inherit; box-sizing: border-box; background: #fafafa;
+        }
+        input:focus, textarea:focus { outline: none; border-color: var(--brand-red); background: #fff; }
+        button { 
+            background-color: var(--brand-red); color: var(--white); border: none; padding: 15px 30px;
+            font-weight: 800; text-transform: uppercase; letter-spacing: 1px; width: 100%; cursor: pointer; transition: 0.3s;
+        }
+        button:hover { background-color: var(--brand-black); transform: translateY(-2px); }
+
+        footer { 
+            text-align: center;
+            padding: 40px; 
+            background: var(--brand-black);
+            color: #555; }
+        footer p { margin: 0; color: #666; }
+        @media (max-width: 480px) {
+    .map-container {
+        padding-bottom: 75%; /* Makes it a bit taller/square on mobile */
+    }
+}
+        @media (max-width: 992px) {
+            #nav-toggle { display: flex; }
+            #nav-menu {
+                position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+                background: #FFFFFF; flex-direction: column; justify-content: center; gap: 30px;
+                transition: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1); box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            }
+            #nav-menu.open { right: 0; }
+            .nav-li { margin-left: 0; text-align: center; width: 100%; }
+            .nav-link { font-size: 1.2rem; display: block; }
+            #nav-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); background: var(--brand-red); }
+            #nav-toggle.active span:nth-child(2) { opacity: 0; }
+            #nav-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); background: var(--brand-red); }
+            .container { flex-direction: column; padding: 40px 20px; gap: 30px; }
+            .map-container { height: 250px; }
+        }
+    </style>
+</head>
+<body>
+<?php include 'nav.php'; ?>
+    <div class="container">
+        <div class="locations">
+            <h2>Our Headquarters</h2>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3989.6877651710383!2d32.54991527496462!3d0.46351019953195227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMMKwMjcnNDguNiJOIDMywrAzMycwOS4wIkU!5e0!3m2!1sen!2sug!4v1777394415006!5m2!1sen!2sug" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <span class="tagline-text">Your Home of Concrete</span>
+            <h3>Visit Us</h3>
+            <p>Kiti, Kasangati - Matugga Road</p>
+            <h3>Call us on</h3>
+            <p>0782 328 711</p>
+            <p>0701 514 447</p>
+            <h3>Email</h3>
+            <p>infiniteconcrete20@gmail.com</p>
+        </div>
+        <div class="feedback">
+            <h2>Send Us a Message</h2>
+            <p style="margin-bottom: 30px; color: #666;">If you have any feedback or questions, leave us a message below.</p>
+            <form id="feedbackForm">
+                <label for="contact">Contact Information</label>
+                <input type="text" id="contact" placeholder="Phone Number or Email Address" required>
+                <label for="message">Your Message</label>
+                <textarea id="message" rows="6" placeholder="How can we help with your concrete needs?" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <?php include 'footer.php'; ?>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            const toggle = document.getElementById('nav-toggle');
+            menu.classList.toggle('open');
+            toggle.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : 'auto';
+        }
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! Your feedback has been sent to the Infinite Concrete team.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
