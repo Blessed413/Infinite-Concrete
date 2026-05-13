@@ -8,40 +8,47 @@
       --text-gray: #a1a1aa;
     }
 </style>
-<nav id="main-nav" style="
-    background-color: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 0 5%;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 9999;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-    border-bottom: 4px solid #D3212D;
-">
-    <div class="nav-logo" style="flex-shrink: 0;">
+<nav id="main-nav">
+    <div class="nav-logo">
         <a href="index.php">
-            <img src="logo.png" alt="Logo" style="height: 55px; width: auto; display: block;">
+            <img src="logo.png" alt="Logo">
         </a>
     </div>
-    <div style="display: flex; align-items: center;">
+    
+    <div class="nav-wrapper">
         <ul id="nav-menu">
             <li class="nav-li"><a href="index.php" class="nav-link <?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">Home</a></li>
             <li class="nav-li"><a href="about.php" class="nav-link <?php echo ($current_page == 'about.php') ? 'active' : ''; ?>">About Us</a></li>
             <li class="nav-li"><a href="catalog.php" class="nav-link <?php echo ($current_page == 'catalog.php') ? 'active' : ''; ?>">Catalog</a></li>
             <li class="nav-li"><a href="contact.php" class="nav-link <?php echo ($current_page == 'contact.php') ? 'active' : ''; ?>">Contact</a></li>
         </ul>
-        <div id="nav-toggle" onclick="toggleMenu()">
-            <span style="background: black;"></span>
-            <span style="background: black;"></span>
-            <span style="background: black;"></span>
-        </div>
+        <button type="button" id="nav-toggle" onclick="toggleMenu()" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
     <style>
+        #main-nav {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 0 5%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-bottom: 4px solid #D3212D;
+        }
+        .nav-logo { flex-shrink: 0; }
+        .nav-logo img { height: 55px; width: auto; display: block; }
+        .nav-wrapper { display: flex; align-items: center; }
         #nav-menu {
             list-style: none;
             margin: 0;
@@ -73,10 +80,19 @@
             margin-left: 20px;
             z-index: 10001;
             position: relative;
+            border: none;
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        #nav-toggle:focus {
+            outline: 3px solid rgba(211, 33, 45, 0.75);
+            outline-offset: 4px;
         }
         #nav-toggle span {
             height: 3px;
             width: 100%;
+            background: #000;
             transition: 0.4s;
             border-radius: 2px;
         }
@@ -103,6 +119,15 @@
                 display: block; 
             }
             .nav-link:hover, .nav-link.active { color: var(--text-white); }
+            #nav-toggle:focus, 
+            #nav-toggle:active {
+                outline: none !important;
+                border: none !important;
+                -webkit-tap-highlight-color: transparent; 
+            }
+            #nav-toggle::after {
+                display: none !important;
+            }
             #nav-toggle.active span:nth-child(1) { 
                 transform: translateY(9px) rotate(45deg); 
                 background: #FFFFFF !important; 
@@ -120,14 +145,17 @@
         function toggleMenu() {
             const menu = document.getElementById('nav-menu');
             const toggle = document.getElementById('nav-toggle');
-            menu.classList.toggle('open');
+            const isOpen = menu.classList.toggle('open');
             toggle.classList.toggle('active');
-            document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : 'auto';
+            toggle.setAttribute('aria-expanded', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : 'auto';
         }
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('nav-menu').classList.remove('open');
-                document.getElementById('nav-toggle').classList.remove('active');
+                const toggle = document.getElementById('nav-toggle');
+                toggle.classList.remove('active');
+                toggle.setAttribute('aria-expanded', false);
                 document.body.style.overflow = 'auto';
             });
         });

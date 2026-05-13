@@ -38,6 +38,10 @@
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             border-bottom: 4px solid var(--brand-red);
         }
+        nav { 
+            padding: 0 5%; 
+            box-sizing: border-box;
+        }
         .nav-logo img { height: 55px; width: auto; display: block; }
         .nav-container { display: flex; align-items: center; }
         #nav-menu { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; }

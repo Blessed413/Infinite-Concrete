@@ -39,7 +39,7 @@
             left: 0;
             bottom: 0;
             width: 0%;
-            height: 2px;
+            height: 3px;
             background: var(--brand-red);
             transition: width 0.35s ease;
         }
@@ -227,6 +227,9 @@
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
+        }
+        nav a:has(img)::after, .logo-link::after {
+            display: none !important;
         }
         footer { text-align: center; padding: 40px; color: #777; font-size: 0.8rem; letter-spacing: 1px; }
         @media (max-width: 992px) {

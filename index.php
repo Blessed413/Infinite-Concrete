@@ -30,68 +30,35 @@
             background-color: var(--concrete-grey); 
             color: var(--brand-black); 
             line-height: 1.6;
+            padding-top: 80px;
         }
         nav { 
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            padding: 0 5%;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 9999;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            border-bottom: 4px solid var(--brand-red);
+            padding: 0 5%; 
+            box-sizing: border-box;
         }
-        .nav-logo img { height: 55px; width: auto; display: block; }
-        .nav-container { display: flex; align-items: center; }
-        #nav-menu { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; }
-        .nav-li { margin-left: 35px; }
-        .nav-link { 
+            nav a, .nav-link {
+            text-decoration: none;
             color: var(--brand-black);
-            text-decoration: none; 
-            font-weight: 700; 
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
             position: relative;
-            padding: 10px 0;
-            transition: color 0.3s; 
+            padding-bottom: 4px;
+            transition: color 0.3s ease;
         }
-        .nav-link::after {
-            content: ''; position: absolute; width: 0; height: 3px; bottom: 0; left: 0;
-            background-color: var(--brand-red); transition: width 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+        nav a::after, .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--brand-red);
+            transition: width 0.35s ease;
         }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .nav-link:hover { color: var(--brand-red); }
-        #nav-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            cursor: pointer;
-            margin-left: 20px;
-            z-index: 10001;
+        nav a:hover::after, .nav-link:hover::after,
+        nav a.active::after, .nav-link.active::after {
+            width: 100%;
         }
-        #nav-toggle span { height: 3px; width: 100%; background: #000; transition: 0.4s; border-radius: 2px; }
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        .overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: var(--glass);
-            z-index: 9998;
+        nav a:has(img)::after, .logo-link::after {
+            display: none !important;
         }
         .slider {
             height: 550px;
@@ -192,20 +159,9 @@
             background: var(--brand-black);
             color: #555; }
         footer p { margin: 0; color: #666; }
-        @media (max-width: 1000px) {
-            .menu-toggle { display: block; }
-            .nav-menu {
-                position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
-                background: var(--bg-dark); flex-direction: column; justify-content: center;
-                gap: 30px; transition: 0.4s ease; border-left: 2px solid var(--brand-red);
-            }
-            .nav-menu.active { right: 0; }
-            .nav-li { margin-left: 0; }
-        }
     </style>
 </head>
-<body>
-    <div class="overlay" id="overlay"></div>
+<body> 
     <?php include 'nav.php'; ?>
     <div class="slider">
         <div class="slide active">
@@ -316,24 +272,6 @@
     <?php include 'footer.php'; ?>
 
     <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        const overlay = document.getElementById('overlay');
-
-        if(menuToggle) {
-            menuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                overlay.classList.toggle('active');
-            });
-        }
-
-        if(overlay) {
-            overlay.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                overlay.classList.remove('active');
-            });
-        }
-
         let slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
         let slideInterval = 4000; 
