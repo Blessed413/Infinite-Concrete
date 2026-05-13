@@ -913,7 +913,7 @@ footer {
             phoneInput.focus();
             return; 
         }
-        alert(`Success!\nOrder confirmed for delivery on ${date}.`);
+        alert(`Thank you, ${document.getElementById('custName').value}!\n Your order is confirmed for delivery on ${date}.`);
         cart = {};
         updateCart();
         document.getElementById('checkoutForm').reset();

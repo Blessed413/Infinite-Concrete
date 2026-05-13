@@ -259,7 +259,7 @@
         <h2 class="section-title">From a Shared Vision<br>to Industry Reality</h2>
         <div style="font-size: 1.1rem; color: #444; max-width: 850px;">
             <p style="margin-bottom: 20px;">In <strong>October 2019</strong>, five couples from the Watoto Church Marrieds’ cell group envisioned a commercial venture that would empower them financially while strengthening their bond. Among them, the Kyewas—experts in landscaping—identified a critical need for high-quality, consistent concrete products.</p>
-            <p>This spark led to the birth of <strong>Infinite Concrete Investments Ltd</strong>. By August 2021, production officially launched at our Matugga site. Today, we have expanded to Kiti and Mbarara, providing the infrastructure that builds Uganda.</p>
+            <p>This spark led to the birth of <strong>Infinite Concrete Investments Ltd</strong>. By <strong>August 2021</strong>, production officially launched at our Matugga site. Today, we have expanded to Kiti and Mbarara, providing the infrastructure that builds Uganda.</p>
         </div>
         <div class="info-grid">
             <div class="info-card">
